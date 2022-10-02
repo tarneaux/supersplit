@@ -1,0 +1,281 @@
+units:
+  kx: cx
+  ky: cy
+  px: 2
+  py: 2
+  mcu_y_offset: -10
+  #mcu_y_offset: 10
+
+points:
+  key:
+    footprints:
+      choc_solder:
+        type: choc
+        # TODO: right orientation for normal and home keys?
+        #anchor:
+          #rotate: 180
+        params:
+          reverse: true
+          keycaps: true
+        nets:
+          # from: P1
+          # to: P2
+          from: =colrow
+          to: =column_net
+      diode:
+        type: diode
+        nets:
+          from: =colrow
+          to: =row_net
+        anchor:
+          rotate: 0
+          shift: [0, -3]
+  zones:
+    matrix:
+      key.padding: 1.04 ky
+      columns:
+        pinky_off:
+          stagger: 0 ky
+          spread: 1kx
+          key:
+            column_net: P10
+        pinky:
+          stagger: 0 ky
+          spread: 1.04 kx
+          key:
+            column_net: P16
+        ring:
+          stagger: 17
+          spread: 1.04kx
+          key:
+            column_net: P14
+        middle:
+          stagger: 7
+          spread: 1.04kx
+          key:
+            column_net: P15
+        index:
+          stagger: -13
+          spread: 1.04kx
+          rotate: -0
+          key:
+            column_net: P18
+        inner:
+          stagger: -2.5
+          spread: 1.04kx
+          key:
+            column_net: P19
+      rows:
+        bottom:
+          row_net: P5
+        home:
+          row_net: P4
+        top:
+          row_net: P3
+        over:
+          row_net: P2
+    thumbfan:
+      key.padding: 1.04 ky
+      anchor:
+        ref: matrix_inner_bottom
+        shift: [-2.08 kx, -1.04 ky]
+      columns:
+        inner:
+          key:
+            column_net: P10
+        near:
+          spread: 1.04 kx
+          key:
+            column_net: P16
+        home:
+          spread: 1.04 kx
+          key:
+            column_net: P14
+        far:
+          # Calculated with pythagoras's theorem
+          spread: 1.039658 kx
+          stagger: -0.005221 kx
+          rotate: -20
+          origin: [-0.5 kx, -0.5 ky]
+          key:
+            column_net: P15
+          row_overrides:
+            thumb:
+              row_net: P7
+            over: 
+              row_net: P6
+        farther:
+          $extends: points.zones.thumbfan.columns.far
+          key:
+            column_net: P18
+        outer:
+          $extends: points.zones.thumbfan.columns.far
+          key:
+            column_net: P19
+      rows:
+        thumb:
+          row_net: P7
+outlines:
+  exports:
+    outline:
+      # Matrix
+      - type: polygon
+        points:
+          - ref: matrix_pinky_off_over
+            shift: [-0.52 kx, 0.52 ky]
+          - ref: matrix_pinky_off_bottom
+            shift: [-0.52 kx, -0.52 ky]
+          - ref: matrix_pinky_bottom
+            shift: [3 kx, -0.52 ky]
+          - ref: matrix_inner_bottom
+            shift: [0.52 kx, -0.52 ky]
+          - ref: matrix_inner_over
+            shift: [0.52 kx, 0.52 ky]
+          - ref: matrix_inner_over
+            shift: [-0.52 kx, 0.52 ky]
+          - ref: matrix_index_over
+            shift: [0.52 kx, 0.52 ky]
+          - ref: matrix_index_over
+            shift: [-0.52 kx, 0.52 ky]
+          - ref: matrix_middle_over
+            shift: [0.52 kx, 0.52 ky]
+          - ref: matrix_middle_over
+            shift: [-0.52 kx, 0.52 ky]
+          - ref: matrix_ring_over
+            shift: [0.52 kx, 0.52 ky]
+          - ref: matrix_ring_over
+            shift: [-0.52 kx, 0.52 ky]
+          - ref: matrix_pinky_over
+            shift: [0.52 kx, 0.52 ky]
+          - ref: matrix_pinky_over
+            shift: [-0.52 kx, 0.52 ky]
+          - ref: matrix_pinky_off_over
+            shift: [0.52 kx, 0.52 ky]
+      # Thumbfan
+      - type: polygon
+        points:
+          - ref: thumbfan_far_over
+            shift: [0.52 kx, 0.52 ky]
+          - ref: thumbfan_farther_over
+            shift: [-0.52 kx, 0.52 ky]
+          - ref: thumbfan_farther_over
+            shift: [0.52 kx, 0.52 ky]
+          - ref: thumbfan_outer_over
+            shift: [-0.52 kx, 0.52 ky]
+          - ref: thumbfan_outer_over
+            shift: [0.52 kx, 0.52 ky]
+          - ref: thumbfan_outer_thumb
+            shift: [0.52 kx, -0.52 ky]
+          - ref: thumbfan_outer_thumb
+            shift: [-0.5 kx, -0.52 ky]
+          - ref: thumbfan_farther_thumb
+            shift: [0.5 kx, -0.52 ky]
+          - ref: thumbfan_farther_thumb
+            shift: [-0.5 kx, -0.52 ky]
+          - ref: thumbfan_far_thumb
+            shift: [0.5 kx, -0.52 ky]
+          - ref: thumbfan_far_thumb
+            shift: [-0.5 kx, -0.52 ky]
+          - ref: thumbfan_home_thumb
+            shift: [0.5 kx, -0.52 ky]
+          - ref: thumbfan_home_thumb
+            shift: [-0.5 kx, -0.52 ky]
+          - ref: thumbfan_near_thumb
+            shift: [0.5 kx, -0.52 ky]
+          - ref: thumbfan_near_thumb
+            shift: [-0.5 kx, -0.52 ky]
+          - ref: thumbfan_inner_thumb
+            shift: [-0.52 kx, -0.52 ky]
+          - ref: thumbfan_inner_thumb
+            shift: [-0.52 kx, 0.52 ky]
+      # Controller area
+      - type: rectangle
+        anchor:
+          ref:
+            - matrix_inner_top
+          shift: [0 kx, -3.05 ky]
+        size: [32, 93.15 - 1.5 ky + mcu_y_offset]
+      # TRRS area
+      - type: rectangle
+        anchor:
+          ref:
+            - thumbfan_farther_over
+          shift: [-0.52 kx, 0.52 ky]
+          rotate: 40+90
+        size: [14, 30]
+    pcb:
+      outline:
+        type: outline
+        name: outline
+        fillet: 1
+pcbs:
+  board:
+    outlines:
+      edge:
+        outline: pcb
+        layer: Edge.Cuts
+        # TODO there's a way to add stuff to the silkscreen layer
+    footprints:
+      mcu_l:
+        type: promicro
+        params:
+          orientation: up
+        anchor:
+          ref:
+            - matrix_inner_top
+          shift: [20, -2+mcu_y_offset]
+          rotate: 270
+      mcu_r:
+        type: promicro
+        params:
+          orientation: down
+        anchor:
+          ref:
+            - matrix_inner_top
+          shift: [22.5, -2 + mcu_y_offset]
+          rotate: 270
+      trrs_l:
+        type: trrs
+        anchor:
+          ref:
+            - thumbfan_farther_over
+          shift: [-3, 25]
+          orient: 40
+        params:
+          reverse: false
+          symmetric: false
+        # TODO: verify this
+        nets:
+          A: VCC
+          B: ""
+          C: GND
+          D: P0
+
+      trrs_r:
+        type: trrs
+        anchor:
+          ref:
+            - thumbfan_farther_over
+          shift: [-5, 25]
+          orient: 40
+        params:
+          reverse: true
+          symmetric: false + mcu_y_offset
+        # TODO: verify this
+        nets:
+          A: VCC
+          B: ""
+          C: GND
+          D: P0
+      reset:
+        type: button
+        anchor:
+          ref:
+            - thumbfan_farther_over
+          shift: [-15, 24.5]
+          orient: 40
+        params:
+          variant: 2_pin_th
+        nets:
+          from: GND
+          to: RST
