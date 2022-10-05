@@ -29,7 +29,7 @@ points:
           to: =row_net
         anchor:
           rotate: 0
-          shift: [0, -3]
+          shift: [0, -4.7]
   zones:
     matrix:
       key.padding: 1.04 ky
@@ -203,6 +203,14 @@ outlines:
           shift: [-0.52 kx, 0.52 ky]
           rotate: 40+90
         size: [14, 30]
+      # Area for the second TRRS on the top left
+      - type: rectangle
+        anchor:
+          ref:
+            - matrix_ring_over
+          shift: [-0.52 kx, -0.52 ky]
+          rotate: 90
+        size: [1.04ky, 10]
     pcb:
       outline:
         type: outline
@@ -239,41 +247,72 @@ pcbs:
         anchor:
           ref:
             - thumbfan_farther_over
-          shift: [-3, 25]
+          shift: [-3, 26.8]
           orient: 40
         params:
           reverse: false
           symmetric: false
         # TODO: verify this
         nets:
-          A: VCC
-          B: ""
+          A: ""
+          B: VCC
           C: GND
           D: P0
-
       trrs_r:
         type: trrs
         anchor:
           ref:
             - thumbfan_farther_over
-          shift: [-5, 25]
+          shift: [-5, 26.8]
           orient: 40
         params:
           reverse: true
-          symmetric: false + mcu_y_offset
+          symmetric: false
         # TODO: verify this
         nets:
-          A: VCC
-          B: ""
+          A: ""
+          B: VCC
           C: GND
           D: P0
+
+      trrs_lo:
+        type: trrs
+        anchor:
+          ref:
+            - matrix_ring_over
+          shift: [-11, 0.52 ky]
+        params:
+          reverse: false
+          symmetric: false
+        # TODO: verify this
+        nets:
+          A: ""
+          B: VCC
+          C: GND
+          D: P0
+      trrs_ro:
+        type: trrs
+        anchor:
+          ref:
+            - matrix_ring_over
+          shift: [-13, 0.52 ky]
+        params:
+          reverse: true
+          symmetric: false
+        # TODO: verify this
+        nets:
+          A: ""
+          B: VCC
+          C: GND
+          D: P0
+
       reset:
         type: button
         anchor:
           ref:
-            - thumbfan_farther_over
-          shift: [-15, 24.5]
-          orient: 40
+            - matrix_ring_bottom
+          shift: [0, -ky]
+          orient: 0
         params:
           variant: 2_pin_th
         nets:
