@@ -1,9 +1,9 @@
 # supersplit
-You can read the article about this [here](https://tarneo.fr/blog/split_keyboard).
+You can read the article about this [here](https://tarneo.fr/posts/split_keyboard).
 
 ## What is this?
 I tried to make a keyboard that is easy to use and compact. For this it has an (oversized) 9-key thumbfan and a (non-oversized) 4x6 matrix.
-![picture](photo.jpg)
+![the entire keyboard](https://tarneo.fr/posts/split_keyboard/monkeyboard.webp)
 (Only the left side of the keyboard is shown)
 
 ## Features
